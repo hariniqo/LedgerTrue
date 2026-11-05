@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "test": "node --test --test-concurrency=1 \"test/*.test.js\"",
+    "test": "node --test --test-concurrency=1",
     "test:qr": "python3 test/qr.test.py",
     "setup": "node tools/setup.mjs",
     "ml:data": "node tools/gen-recon-dataset.mjs 2500",
