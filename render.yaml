@@ -1,0 +1,41 @@
+# Render blueprint for a tokened (non-demo) deployment. Fill the secrets in the Render dashboard; never commit them.
+# Note: the free tier has no persistent disk, so chains, anchors and the guard key reset on redeploy.
+# Add a disk and point the *_FILE/*_DIR variables at it if you need them to survive restarts.
+services:
+  - type: web
+    name: ledgertrue
+    runtime: node
+    plan: free
+    buildCommand: "true"
+    startCommand: npm start
+    healthCheckPath: /api/config
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: DEMO_MODE
+        value: "false"
+      - key: PAYPAL_ENV
+        value: sandbox
+      - key: OPERATOR_TOKEN
+        sync: false
+      - key: AGENT_TOKEN
+        sync: false
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_WEBHOOK_ID
+        sync: false
+      - key: NVIDIA_API_KEY
+        sync: false
+      - key: AI_DISABLED
+        value: "false"
+# Optional, UNTESTED: private ML service (Python). Set ML_SERVICE_URL on the web service to its private address
+# and use the same ML_SERVICE_TOKEN on both. See docs/AI_ML.md.
+#  - type: pserv
+#    name: ledgertrue-ml
+#    runtime: python
+#    buildCommand: pip install -r ml/requirements.txt
+#    startCommand: cd ml && ML_HOST=0.0.0.0 python3 -m ltml

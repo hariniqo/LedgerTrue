@@ -1,0 +1,628 @@
+{
+  "createdAt": 1793884189868,
+  "dataNote": "SIMULATED DATA. Mandate streams come from ml/ltml/synth.py with anomalies injected by construction; payment streams come from tools/gen-recon-dataset.mjs and are labelled by the real reconciler. There is no real fraud and no real customer history here, so these numbers show the pipeline works, not how it performs in production.",
+  "dataSource": "synthetic",
+  "environment": {
+    "ltml": "1.0.0",
+    "numpy": "2.5.3",
+    "python": "3.13.18",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1"
+  },
+  "features": [
+    "n_events",
+    "n_dup",
+    "n_unique",
+    "n_app",
+    "n_webhook",
+    "n_poll",
+    "has_attempt",
+    "has_timeout",
+    "has_client_error",
+    "has_complete",
+    "has_pending",
+    "has_denied",
+    "has_refund",
+    "has_dispute",
+    "out_of_order",
+    "amount_mismatch",
+    "log_amount",
+    "span_log",
+    "silence_log",
+    "attempt_to_timeout_log",
+    "attempt_to_paypal_log",
+    "timeout_before_paypal",
+    "state_INITIATED",
+    "state_PROCESSING",
+    "state_PENDING",
+    "state_UNKNOWN",
+    "state_SUCCESS",
+    "state_VERIFIED",
+    "state_FAILED",
+    "state_DISPUTED",
+    "state_PARTIALLY_REFUNDED",
+    "state_REFUNDED",
+    "state_REVERSED",
+    "state_RECONCILE"
+  ],
+  "metrics": {
+    "afterTimeoutBeforePayPal": {
+      "baseRateBrier": 0.13400546103759717,
+      "brier": 0.1354344897550754,
+      "engineStateWouldSay": "UNKNOWN (no money-movement information)",
+      "moneyMovedRate": 0.8405797101449275,
+      "prAuc": 0.8515742128935532,
+      "rows": 69
+    },
+    "attention": {
+      "at0.5": {
+        "f1": 0.7075,
+        "falsePositiveRate": 0.009777777777777778,
+        "fn": 212,
+        "fp": 22,
+        "precision": 0.9278688524590164,
+        "recall": 0.5717171717171717,
+        "threshold": 0.5,
+        "tn": 2228,
+        "tp": 283
+      },
+      "baseRateBrier": 0.14780972856758937,
+      "brier": 0.07345553041742489,
+      "ece": 0.008533991172495063,
+      "positiveRate": 0.18032786885245902,
+      "prAuc": 0.6994020759713022,
+      "prAucCI95": [
+        0.6656482391497275,
+        0.7294492391466665
+      ],
+      "reliability": [
+        {
+          "bin": 0,
+          "meanPredicted": 0.023008141123998953,
+          "n": 1081,
+          "observed": 0.01757631822386679
+        },
+        {
+          "bin": 1,
+          "meanPredicted": 0.15111371964789427,
+          "n": 1355,
+          "observed": 0.14169741697416974
+        },
+        {
+          "bin": 2,
+          "meanPredicted": 0.25096986028472984,
+          "n": 2,
+          "observed": 0.5
+        },
+        {
+          "bin": 3,
+          "meanPredicted": 0.3250144002699198,
+          "n": 1,
+          "observed": 0.0
+        },
+        {
+          "bin": 4,
+          "meanPredicted": 0.4967435790410356,
+          "n": 1,
+          "observed": 0.0
+        },
+        {
+          "bin": 5,
+          "meanPredicted": 0.5311405317897936,
+          "n": 1,
+          "observed": 0.0
+        },
+        {
+          "bin": 6,
+          "meanPredicted": 0.6666666666666666,
+          "n": 5,
+          "observed": 0.6
+        },
+        {
+          "bin": 7,
+          "meanPredicted": 0.7657226474914739,
+          "n": 3,
+          "observed": 0.6666666666666666
+        },
+        {
+          "bin": 8,
+          "meanPredicted": 0.8567562176963546,
+          "n": 114,
+          "observed": 0.8596491228070176
+        },
+        {
+          "bin": 9,
+          "meanPredicted": 0.999910240887938,
+          "n": 182,
+          "observed": 0.989010989010989
+        }
+      ],
+      "rocAuc": 0.8760184062850729
+    },
+    "baselines": {
+      "attention_timeoutWithoutConfirmation": {
+        "f1": 0.2538071065989848,
+        "prAuc": 0.2713766766020864,
+        "precision": 0.78125,
+        "recall": 0.15151515151515152
+      },
+      "moneyMoved_engineStateOnly": {
+        "prAuc": 0.9338437144859781,
+        "rocAuc": 0.7297633872976339
+      }
+    },
+    "byEventsSeen": {
+      "1": {
+        "attentionPrAuc": 0.14929225728276088,
+        "rows": 627
+      },
+      "2": {
+        "attentionPrAuc": 0.18078563985529153,
+        "rows": 687
+      },
+      "3": {
+        "attentionPrAuc": 0.7356467228238455,
+        "rows": 921
+      },
+      "4": {
+        "attentionPrAuc": 0.9747924911285849,
+        "rows": 312
+      }
+    },
+    "moneyMoved": {
+      "at0.5": {
+        "f1": 0.9604474630443467,
+        "falsePositiveRate": 0.5744047619047619,
+        "fn": 5,
+        "fp": 193,
+        "precision": 0.9256834809395457,
+        "recall": 0.9979244499792445,
+        "threshold": 0.5,
+        "tn": 143,
+        "tp": 2404
+      },
+      "baseRateBrier": 0.10742154140165425,
+      "brier": 0.06376452674927115,
+      "ece": 0.020863753324490565,
+      "positiveRate": 0.8775956284153006,
+      "prAuc": 0.9638683511492898,
+      "prAucCI95": [
+        0.9586062993428122,
+        0.9697688882411333
+      ],
+      "reliability": [
+        {
+          "bin": 0,
+          "meanPredicted": 0.0,
+          "n": 106,
+          "observed": 0.03773584905660377
+        },
+        {
+          "bin": 2,
+          "meanPredicted": 0.2992041278009402,
+          "n": 40,
+          "observed": 0.025
+        },
+        {
+          "bin": 3,
+          "meanPredicted": 0.3444005885929463,
+          "n": 1,
+          "observed": 0.0
+        },
+        {
+          "bin": 4,
+          "meanPredicted": 0.4220294081053981,
+          "n": 1,
+          "observed": 0.0
+        },
+        {
+          "bin": 8,
+          "meanPredicted": 0.8871359223300973,
+          "n": 1342,
+          "observed": 0.856929955290611
+        },
+        {
+          "bin": 9,
+          "meanPredicted": 1.0,
+          "n": 1255,
+          "observed": 0.999203187250996
+        }
+      ],
+      "rocAuc": 0.8597385301152424
+    },
+    "split": {
+      "testPayments": 625,
+      "testRows": 2745,
+      "trainPayments": 1500,
+      "trainRows": 6732,
+      "validationRows": 1685
+    }
+  },
+  "name": "recon",
+  "reference": {
+    "amount_mismatch": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "attempt_to_paypal_log": {
+      "edges": [
+        -1.0,
+        6.499787040655854,
+        7.7437032581737535,
+        8.104612820236259,
+        8.53405030848266,
+        8.987521756615223
+      ],
+      "expected": [
+        0.0,
+        0.4994058229352347,
+        0.10041592394533572,
+        0.10011883541295306,
+        0.09982174688057041,
+        0.10011883541295306,
+        0.10011883541295306
+      ]
+    },
+    "attempt_to_timeout_log": {
+      "edges": [
+        -1.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "has_attempt": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "expected": [
+        0.0,
+        0.23544266191325014,
+        0.7645573380867499
+      ]
+    },
+    "has_client_error": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "has_complete": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "expected": [
+        0.0,
+        0.5610516934046346,
+        0.43894830659536543
+      ]
+    },
+    "has_denied": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "has_dispute": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "has_pending": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "has_refund": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "has_timeout": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "log_amount": {
+      "edges": [
+        7.741099090035366,
+        8.188966863648876,
+        8.497194544909547,
+        8.716207971151853,
+        8.974744612722734,
+        9.249657234353133,
+        9.503084610020228,
+        9.809231816610408,
+        10.27163147557801
+      ],
+      "expected": [
+        0.09714795008912656,
+        0.10190136660724897,
+        0.09358288770053476,
+        0.10086155674390969,
+        0.10175282234105763,
+        0.09893048128342247,
+        0.10279263220439691,
+        0.09982174688057041,
+        0.1021984551396316,
+        0.10101010101010101
+      ]
+    },
+    "n_app": {
+      "edges": [
+        1.0,
+        2.0
+      ],
+      "expected": [
+        0.0,
+        0.23380867498514557,
+        0.7661913250148544
+      ]
+    },
+    "n_dup": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "n_events": {
+      "edges": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "expected": [
+        0.0,
+        0.22296494355317883,
+        0.24019607843137256,
+        0.33407605466428997,
+        0.20276292335115864
+      ]
+    },
+    "n_poll": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "n_unique": {
+      "edges": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "expected": [
+        0.0,
+        0.22296494355317883,
+        0.2416815210932858,
+        0.3931966726084373,
+        0.14215686274509803
+      ]
+    },
+    "n_webhook": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "expected": [
+        0.0,
+        0.4858882947118241,
+        0.5141117052881758
+      ]
+    },
+    "out_of_order": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "silence_log": {
+      "edges": [
+        0.0,
+        9.392745258631441
+      ],
+      "expected": [
+        0.0,
+        0.7771836007130125,
+        0.22281639928698752
+      ]
+    },
+    "span_log": {
+      "edges": [
+        0.0,
+        6.240275845170769,
+        6.620606184623868,
+        7.219275873874897,
+        7.71333728972852,
+        8.105730093242101,
+        8.623317412786395,
+        9.076603206253688
+      ],
+      "expected": [
+        0.0,
+        0.2999108734402852,
+        0.10011883541295306,
+        0.09997029114676173,
+        0.09997029114676173,
+        0.09997029114676173,
+        0.09997029114676173,
+        0.09997029114676173,
+        0.10011883541295306
+      ]
+    },
+    "state_DISPUTED": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "state_FAILED": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "state_INITIATED": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "expected": [
+        0.0,
+        0.7770350564468211,
+        0.22296494355317883
+      ]
+    },
+    "state_PARTIALLY_REFUNDED": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "state_PENDING": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "state_PROCESSING": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "expected": [
+        0.0,
+        0.7675282234105764,
+        0.23247177658942364
+      ]
+    },
+    "state_RECONCILE": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "state_REFUNDED": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "state_REVERSED": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "state_SUCCESS": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "expected": [
+        0.0,
+        0.6145276292335116,
+        0.38547237076648844
+      ]
+    },
+    "state_UNKNOWN": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "state_VERIFIED": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    },
+    "timeout_before_paypal": {
+      "edges": [
+        0.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "seed": 7,
+  "sha256": "f825d4e320432f58b1e793f8ad4e58f69a84e9d807ec0f1f0dfd685c35482f1a",
+  "thresholds": {
+    "attention": {
+      "high": 0.6,
+      "medium": 0.3
+    }
+  },
+  "trainedOnPayments": 2500,
+  "version": "20261105-130949"
+}

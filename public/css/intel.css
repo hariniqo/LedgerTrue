@@ -1,0 +1,21 @@
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 8px; }
+.kpi-v { font-size: 28px; font-weight: 700; margin: 2px 0; }
+.two { display: grid; grid-template-columns: minmax(260px, 1fr) minmax(300px, 1.6fr); gap: 0 18px; }
+@media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
+.row.between { justify-content: space-between; }
+.health { display: grid; gap: 16px; }
+.health-score b { font-size: 52px; font-family: var(--font); }
+.health-score span { margin-left: 8px; color: var(--ink-2); }
+.health-score.ok b { color: var(--ok); } .health-score.warn b { color: var(--warn); } .health-score.bad b { color: var(--bad); }
+.factors, .drift { display: grid; gap: 10px; margin-top: 8px; }
+.factor .bar { height: 6px; border-radius: 99px; background: var(--mute-soft); overflow: hidden; margin-top: 4px; }
+.factor .bar i { display: block; height: 100%; background: var(--brand); }
+.chart { width: 100%; height: auto; }
+.ch-hist { fill: none; stroke: var(--ink); stroke-width: 2; }
+.ch-proj { fill: none; stroke: var(--brand); stroke-width: 2; stroke-dasharray: 5 4; }
+.ch-band { fill: var(--brand-soft); opacity: .9; }
+.ch-budget { stroke: var(--bad); stroke-width: 1; stroke-dasharray: 3 3; }
+.ch-now { stroke: var(--line-2); stroke-width: 1; }
+.ch-label { fill: var(--ink-3); font-size: 11px; font-family: var(--font); }
+tr.clickable { cursor: pointer; } tr.clickable:hover { background: var(--mute-soft); }
+.ev { margin: 4px 0 8px 18px; }

@@ -1,0 +1,529 @@
+{
+  "note": "SIMULATED DATA. Mandate streams come from ml/ltml/synth.py with anomalies injected by construction; payment streams come from tools/gen-recon-dataset.mjs and are labelled by the real reconciler. There is no real fraud and no real customer history here, so these numbers show the pipeline works, not how it performs in production.",
+  "generatedAt": "2026-11-05 13:09:49Z",
+  "seed": 7,
+  "mandates": 700,
+  "payments": 2500,
+  "risk": {
+    "split": {
+      "train": 16868,
+      "validation": 3555,
+      "test": 7648,
+      "anomalyRate": {
+        "train": 0.053118330566753615,
+        "test": 0.051255230125523014
+      }
+    },
+    "test": {
+      "prAuc": 0.7315704262639795,
+      "prAucCI95": [
+        0.6922140015111116,
+        0.7676951577827401
+      ],
+      "rocAuc": 0.9478301208851786,
+      "brier": 0.021481638210446193,
+      "ece": 0.006946580350453162,
+      "atHigh": {
+        "threshold": 0.250000001,
+        "precision": 0.7732919254658385,
+        "recall": 0.6352040816326531,
+        "f1": 0.6974789915966387,
+        "falsePositiveRate": 0.0100606394707828,
+        "tp": 249,
+        "fp": 73,
+        "fn": 143,
+        "tn": 7183
+      },
+      "atMedium": {
+        "threshold": 0.09734513374336283,
+        "precision": 0.6399082568807339,
+        "recall": 0.7117346938775511,
+        "f1": 0.6739130434782609,
+        "falsePositiveRate": 0.02163726571113561,
+        "tp": 279,
+        "fp": 157,
+        "fn": 113,
+        "tn": 7099
+      },
+      "reliability": [
+        {
+          "bin": 0,
+          "n": 7212,
+          "meanPredicted": 0.012892068201394404,
+          "observed": 0.015668330560177482
+        },
+        {
+          "bin": 1,
+          "n": 3,
+          "meanPredicted": 0.12200569145760527,
+          "observed": 0.6666666666666666
+        },
+        {
+          "bin": 2,
+          "n": 112,
+          "meanPredicted": 0.2499065591763437,
+          "observed": 0.25
+        },
+        {
+          "bin": 3,
+          "n": 2,
+          "meanPredicted": 0.3785281585778165,
+          "observed": 0.0
+        },
+        {
+          "bin": 4,
+          "n": 48,
+          "meanPredicted": 0.460521320331924,
+          "observed": 0.2708333333333333
+        },
+        {
+          "bin": 5,
+          "n": 3,
+          "meanPredicted": 0.5610857078092297,
+          "observed": 0.6666666666666666
+        },
+        {
+          "bin": 6,
+          "n": 2,
+          "meanPredicted": 0.6685226366606634,
+          "observed": 1.0
+        },
+        {
+          "bin": 7,
+          "n": 51,
+          "meanPredicted": 0.737623858715815,
+          "observed": 0.49019607843137253
+        },
+        {
+          "bin": 9,
+          "n": 215,
+          "meanPredicted": 1.0,
+          "observed": 0.9627906976744186
+        }
+      ]
+    },
+    "baselines": {
+      "ruleScore": {
+        "prAuc": 0.38635963092905734,
+        "rocAuc": 0.8471017300249758
+      },
+      "isolationForestOnly": {
+        "prAuc": 0.4252537409602769,
+        "rocAuc": 0.8709978582116418
+      },
+      "randomPrAuc": 0.051255230125523014
+    },
+    "byAnomalyType": {
+      "spike": {
+        "n": 47,
+        "recallAtHigh": 0.10638297872340426,
+        "recallAtMedium": 0.2765957446808511
+      },
+      "burst": {
+        "n": 84,
+        "recallAtHigh": 0.7619047619047619,
+        "recallAtMedium": 0.8571428571428571
+      },
+      "rare_merchant": {
+        "n": 44,
+        "recallAtHigh": 0.022727272727272728,
+        "recallAtMedium": 0.09090909090909091
+      },
+      "off_hours": {
+        "n": 51,
+        "recallAtHigh": 0.2549019607843137,
+        "recallAtMedium": 0.47058823529411764
+      },
+      "duplicate": {
+        "n": 50,
+        "recallAtHigh": 1.0,
+        "recallAtMedium": 1.0
+      },
+      "structuring": {
+        "n": 116,
+        "recallAtHigh": 1.0,
+        "recallAtMedium": 1.0
+      }
+    },
+    "warmVsColdStart": {
+      "warmPrAuc": 0.7560801847057196,
+      "coldPrAuc": 0.5943966682695123,
+      "coldShare": 0.2477771966527197
+    }
+  },
+  "forecast": {
+    "n": 496,
+    "unit": "fraction of budget",
+    "horizonFractionOfLife": 0.25,
+    "origins": [
+      0.3,
+      0.5,
+      0.7
+    ],
+    "bootstrapP50": {
+      "mae": 0.11833541107692035,
+      "rmse": 0.1753458909543555
+    },
+    "runRateBaseline": {
+      "mae": 0.12783212227397212,
+      "rmse": 0.1889073153222049
+    },
+    "recentRateBaseline": {
+      "mae": 0.1573760913250412,
+      "rmse": 0.27174200231527873
+    },
+    "noChangeBaseline": {
+      "mae": 0.1587703743265664,
+      "rmse": 0.21224247702791438
+    },
+    "intervalCoverage80": 0.7883064516129032,
+    "intervalWidthMean": 0.40434257567870274,
+    "config": {
+      "halfLifeFrac": 1.0,
+      "intervalScale": 1.4663657469099294
+    },
+    "calibration": {
+      "halfLifeMae": {
+        "0.1": 0.12010960192596691,
+        "0.25": 0.11495187163711997,
+        "0.5": 0.10858353973889133,
+        "1.0": 0.10699359668861173
+      },
+      "chosenHalfLife": 1.0,
+      "intervalScale": 1.4663657469099294,
+      "calibrationRows": 624
+    },
+    "uncalibratedTest": {
+      "intervalCoverage80": 0.5745967741935484,
+      "intervalWidthMean": 0.2676840558724945
+    }
+  },
+  "distress": {
+    "split": {
+      "train": 1182,
+      "validation": 300,
+      "test": 476,
+      "exhaustedRate": {
+        "train": 0.2182741116751269,
+        "test": 0.23739495798319327
+      }
+    },
+    "algorithm": "logistic_regression",
+    "validationBrier": {
+      "logistic_regression": 0.07165985269211077,
+      "gradient_boosting": 0.0777666874715405
+    },
+    "test": {
+      "prAuc": 0.696351353254477,
+      "prAucCI95": [
+        0.6243006781647946,
+        0.7667180052300736
+      ],
+      "rocAuc": 0.8595894585436018,
+      "brier": 0.11190308996757678,
+      "ece": 0.029791296514580536,
+      "atHigh": {
+        "threshold": 0.200000001,
+        "precision": 0.5833333333333334,
+        "recall": 0.7433628318584071,
+        "f1": 0.6536964980544748,
+        "falsePositiveRate": 0.1652892561983471,
+        "tp": 84,
+        "fp": 60,
+        "fn": 29,
+        "tn": 303
+      },
+      "reliability": [
+        {
+          "bin": 0,
+          "n": 197,
+          "meanPredicted": 0.024365508446586245,
+          "observed": 0.04568527918781726
+        },
+        {
+          "bin": 1,
+          "n": 95,
+          "meanPredicted": 0.11290322580645162,
+          "observed": 0.12631578947368421
+        },
+        {
+          "bin": 2,
+          "n": 70,
+          "meanPredicted": 0.23601746965858905,
+          "observed": 0.24285714285714285
+        },
+        {
+          "bin": 3,
+          "n": 42,
+          "meanPredicted": 0.30759024157195713,
+          "observed": 0.42857142857142855
+        },
+        {
+          "bin": 6,
+          "n": 9,
+          "meanPredicted": 0.6666666666666666,
+          "observed": 0.7777777777777778
+        },
+        {
+          "bin": 7,
+          "n": 39,
+          "meanPredicted": 0.7217046609911324,
+          "observed": 0.6666666666666666
+        },
+        {
+          "bin": 9,
+          "n": 24,
+          "meanPredicted": 1.0,
+          "observed": 1.0
+        }
+      ]
+    },
+    "baselines": {
+      "logisticRegression": {
+        "prAuc": 0.7494914533956248,
+        "rocAuc": 0.8710841317438259,
+        "brier": 0.10870943421587557
+      },
+      "projectedUtilHeuristic": {
+        "prAuc": 0.38954785454004615,
+        "rocAuc": 0.6813793607840269,
+        "precision": 0.55,
+        "recall": 0.48672566371681414,
+        "f1": 0.5164319248826292
+      },
+      "bootstrapForecastProbability": {
+        "prAuc": 0.7152919147062773,
+        "rocAuc": 0.8434512296214425,
+        "brier": 0.1277012528473804,
+        "coverage": 0.9222689075630253
+      },
+      "randomPrAuc": 0.23739495798319327
+    }
+  },
+  "recon": {
+    "split": {
+      "trainRows": 6732,
+      "validationRows": 1685,
+      "testRows": 2745,
+      "trainPayments": 1500,
+      "testPayments": 625
+    },
+    "attention": {
+      "prAuc": 0.6994020759713022,
+      "prAucCI95": [
+        0.6656482391497275,
+        0.7294492391466665
+      ],
+      "baseRateBrier": 0.14780972856758937,
+      "rocAuc": 0.8760184062850729,
+      "brier": 0.07345553041742489,
+      "ece": 0.008533991172495063,
+      "positiveRate": 0.18032786885245902,
+      "at0.5": {
+        "threshold": 0.5,
+        "precision": 0.9278688524590164,
+        "recall": 0.5717171717171717,
+        "f1": 0.7075,
+        "falsePositiveRate": 0.009777777777777778,
+        "tp": 283,
+        "fp": 22,
+        "fn": 212,
+        "tn": 2228
+      },
+      "reliability": [
+        {
+          "bin": 0,
+          "n": 1081,
+          "meanPredicted": 0.023008141123998953,
+          "observed": 0.01757631822386679
+        },
+        {
+          "bin": 1,
+          "n": 1355,
+          "meanPredicted": 0.15111371964789427,
+          "observed": 0.14169741697416974
+        },
+        {
+          "bin": 2,
+          "n": 2,
+          "meanPredicted": 0.25096986028472984,
+          "observed": 0.5
+        },
+        {
+          "bin": 3,
+          "n": 1,
+          "meanPredicted": 0.3250144002699198,
+          "observed": 0.0
+        },
+        {
+          "bin": 4,
+          "n": 1,
+          "meanPredicted": 0.4967435790410356,
+          "observed": 0.0
+        },
+        {
+          "bin": 5,
+          "n": 1,
+          "meanPredicted": 0.5311405317897936,
+          "observed": 0.0
+        },
+        {
+          "bin": 6,
+          "n": 5,
+          "meanPredicted": 0.6666666666666666,
+          "observed": 0.6
+        },
+        {
+          "bin": 7,
+          "n": 3,
+          "meanPredicted": 0.7657226474914739,
+          "observed": 0.6666666666666666
+        },
+        {
+          "bin": 8,
+          "n": 114,
+          "meanPredicted": 0.8567562176963546,
+          "observed": 0.8596491228070176
+        },
+        {
+          "bin": 9,
+          "n": 182,
+          "meanPredicted": 0.999910240887938,
+          "observed": 0.989010989010989
+        }
+      ]
+    },
+    "moneyMoved": {
+      "prAuc": 0.9638683511492898,
+      "prAucCI95": [
+        0.9586062993428122,
+        0.9697688882411333
+      ],
+      "baseRateBrier": 0.10742154140165425,
+      "rocAuc": 0.8597385301152424,
+      "brier": 0.06376452674927115,
+      "ece": 0.020863753324490565,
+      "positiveRate": 0.8775956284153006,
+      "at0.5": {
+        "threshold": 0.5,
+        "precision": 0.9256834809395457,
+        "recall": 0.9979244499792445,
+        "f1": 0.9604474630443467,
+        "falsePositiveRate": 0.5744047619047619,
+        "tp": 2404,
+        "fp": 193,
+        "fn": 5,
+        "tn": 143
+      },
+      "reliability": [
+        {
+          "bin": 0,
+          "n": 106,
+          "meanPredicted": 0.0,
+          "observed": 0.03773584905660377
+        },
+        {
+          "bin": 2,
+          "n": 40,
+          "meanPredicted": 0.2992041278009402,
+          "observed": 0.025
+        },
+        {
+          "bin": 3,
+          "n": 1,
+          "meanPredicted": 0.3444005885929463,
+          "observed": 0.0
+        },
+        {
+          "bin": 4,
+          "n": 1,
+          "meanPredicted": 0.4220294081053981,
+          "observed": 0.0
+        },
+        {
+          "bin": 8,
+          "n": 1342,
+          "meanPredicted": 0.8871359223300973,
+          "observed": 0.856929955290611
+        },
+        {
+          "bin": 9,
+          "n": 1255,
+          "meanPredicted": 1.0,
+          "observed": 0.999203187250996
+        }
+      ]
+    },
+    "baselines": {
+      "moneyMoved_engineStateOnly": {
+        "prAuc": 0.9338437144859781,
+        "rocAuc": 0.7297633872976339
+      },
+      "attention_timeoutWithoutConfirmation": {
+        "prAuc": 0.2713766766020864,
+        "precision": 0.78125,
+        "recall": 0.15151515151515152,
+        "f1": 0.2538071065989848
+      }
+    },
+    "afterTimeoutBeforePayPal": {
+      "rows": 69,
+      "moneyMovedRate": 0.8405797101449275,
+      "prAuc": 0.8515742128935532,
+      "brier": 0.1354344897550754,
+      "baseRateBrier": 0.13400546103759717,
+      "engineStateWouldSay": "UNKNOWN (no money-movement information)"
+    },
+    "byEventsSeen": {
+      "1": {
+        "rows": 627,
+        "attentionPrAuc": 0.14929225728276088
+      },
+      "2": {
+        "rows": 687,
+        "attentionPrAuc": 0.18078563985529153
+      },
+      "3": {
+        "rows": 921,
+        "attentionPrAuc": 0.7356467228238455
+      },
+      "4": {
+        "rows": 312,
+        "attentionPrAuc": 0.9747924911285849
+      }
+    }
+  },
+  "environment": {
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "ltml": "1.0.0"
+  },
+  "promotionGate": {
+    "passed": true,
+    "checks": [
+      {
+        "model": "risk",
+        "newPrAuc": 0.7316,
+        "baselinePrAuc": 0.3864,
+        "livePrAuc": 0.7337,
+        "pass": true
+      },
+      {
+        "model": "distress",
+        "newPrAuc": 0.6964,
+        "baselinePrAuc": 0.2374,
+        "livePrAuc": 0.6964,
+        "pass": true
+      },
+      {
+        "model": "recon",
+        "newPrAuc": 0.6994,
+        "baselinePrAuc": 0.1803,
+        "livePrAuc": 0.7095,
+        "pass": true
+      }
+    ]
+  }
+}

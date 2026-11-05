@@ -1,0 +1,22 @@
+{
+  "name": "ledgertrue",
+  "version": "1.6.0",
+  "description": "Proof of Intent: signed spending mandates, a hash-chained ledger and a public Proof Card for AI agent payments on PayPal, plus a Ghost Balance reconciliation engine.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test --test-concurrency=1 \"test/*.test.js\"",
+    "test:qr": "python3 test/qr.test.py",
+    "setup": "node tools/setup.mjs",
+    "ml:data": "node tools/gen-recon-dataset.mjs 2500",
+    "ml:train": "cd ml && python3 -m ltml.train",
+    "ml:test": "cd ml && python -m pytest -q tests",
+    "ml:serve": "cd ml && python3 -m ltml"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

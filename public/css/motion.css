@@ -1,0 +1,46 @@
+/* LedgerTrue motion layer. Additive: loaded after app.css, removes nothing, respects reduced motion. */
+:root{--display:'Unbounded',var(--font);--spring:cubic-bezier(.2,.9,.1,1)}
+h1,.page-head h1,.brand-name,.kpi-value,.budget .big{font-family:var(--display);letter-spacing:-.045em}
+body{background-image:repeating-linear-gradient(transparent 0 39px,color-mix(in srgb,var(--line) 50%,transparent) 39px 40px)}
+.page-head h1{display:block;animation:lt-rise .35s var(--spring) both}
+@keyframes lt-rise{from{opacity:0;transform:translateY(40%)}}
+@keyframes lt-pop{from{opacity:0;transform:scale(.92)}}
+@keyframes lt-in{from{opacity:0;transform:translateX(-24px)}}
+@keyframes lt-stamp{from{opacity:0;transform:translateX(50px) scale(1.2) rotate(3deg)}}
+@keyframes lt-link{from{transform:scaleX(0)}}
+@keyframes lt-draw{from{transform:scaleY(0)}}
+@keyframes lt-crack{20%{transform:rotate(-1.5deg) translateX(-6px)}45%{transform:translateX(6px)}}
+@keyframes lt-shake{20%,60%{translate:-6px 0}40%,80%{translate:6px 0}}
+@keyframes lt-slam{0%{opacity:0;transform:scale(1.35) rotate(-3deg)}60%{opacity:1;transform:scale(.97)}}
+@keyframes lt-print{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
+@keyframes lt-toast{from{opacity:0;transform:translateY(24px) scale(.92)}}
+@keyframes lt-slide{to{background-position:23px 0}}
+@keyframes lt-up{to{transform:none}}
+@keyframes lt-fade{to{opacity:1}}
+@keyframes lt-leave{to{opacity:0;transform:scale(1.04);visibility:hidden}}
+.kpi,.flow-step{animation:lt-pop .3s var(--spring) both;animation-delay:calc(min(var(--i,0),8)*30ms)}
+.req,.activity-row,.feed .ev,.story li,.assistant-message{animation:lt-in .25s var(--spring) both;animation-delay:calc(min(var(--i,0),10)*20ms)}
+.bar .h{background:repeating-linear-gradient(135deg,var(--hold) 0 8px,color-mix(in srgb,var(--hold) 70%,#fff) 8px 16px);background-size:23px 23px;animation:lt-slide 1.2s linear infinite}
+.tape::before{transform-origin:top;animation:lt-draw 1s var(--spring) both}
+.blk{animation:lt-stamp .3s var(--spring) both;animation-delay:calc(min(var(--i,0),12)*25ms)}
+.blk.good::before{animation:lt-pop .5s var(--spring)}
+.blk.broken{animation:lt-crack .7s var(--spring) both}.blk.broken::before{animation:lt-shake .5s}
+.verdict{animation:lt-slam .55s var(--spring) both}.verdict.bad{animation:lt-slam .55s var(--spring) both,lt-shake .5s .35s}
+.proof{animation:lt-print .5s var(--spring) both}
+.toast{animation:lt-toast .5s var(--spring)}
+button:active:not(:disabled),.btn:active{transform:scale(.95)}
+/* sign-in gate */
+.gate{position:fixed;inset:0;z-index:1000;overflow:auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:40px;align-items:center;padding:clamp(20px,5vw,72px);background:var(--paper) repeating-linear-gradient(transparent 0 39px,var(--line) 39px 40px)}
+@media(max-width:900px){.gate{grid-template-columns:1fr;align-content:start}}
+.gate.leave{animation:lt-leave .25s var(--spring) forwards}
+.gate h1{font:700 clamp(30px,6vw,76px)/1.02 var(--display);letter-spacing:-.055em;max-width:14ch;margin:20px 0}
+.gate h1 .ln{display:block;overflow:hidden;padding-bottom:.08em}.gate h1 .ln span{display:block;transform:translateY(112%);animation:lt-up .5s var(--spring) forwards}
+.gate h1 .ln:nth-child(2) span{animation-delay:.08s;color:transparent;-webkit-text-stroke:2px var(--ink)}
+.gate .lead{max-width:54ch;color:var(--ink-2);font-size:18px;opacity:0;animation:lt-fade .4s .25s forwards}
+.gate .viz{display:flex;align-items:center;margin-top:30px}
+.gate .gl{width:84px;height:44px;border:1.5px solid var(--ink);border-radius:6px;background:var(--surface);animation:lt-stamp .6s var(--spring) both;animation-delay:var(--d)}
+.gate .gk{width:34px;height:18px;border:3.5px solid var(--brand);border-radius:99px;margin:0 -8px;transform-origin:left;animation:lt-link .5s var(--spring) both;animation-delay:var(--d)}
+.gate form{background:var(--surface);border:1.5px solid var(--ink);border-radius:18px;padding:24px;display:grid;gap:12px;opacity:0;animation:lt-fade .4s .3s forwards}
+.gate h2{margin:0}.gate label{display:grid;gap:5px;font-weight:600;font-size:14px}.gate .fine{font-size:12.5px;color:var(--ink-3);margin:0}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important}.gate h1 .ln span{transform:none}.gate .lead,.gate form{opacity:1}}
+.main{transition:opacity .15s}.main.loading{opacity:.55}

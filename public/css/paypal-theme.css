@@ -1,0 +1,131 @@
+/* LedgerTrue v1.5 theme: PayPal-inspired look (deep blue, bright blue, golden pill CTA).
+   Additive layer loaded LAST. Delete this one file to get the old look back.
+   Palette only; no PayPal logo or wordmark is used. */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  --pp-deep: #003087;      /* deep brand blue */
+  --pp-blue: #0070e0;      /* action blue */
+  --pp-sky: #009cde;       /* highlight blue */
+  --pp-gold: #ffc439;      /* checkout-button gold */
+  --pp-gold-2: #f2ba36;
+  --ink: #0c1b3a; --ink-2: #374a6e; --ink-3: #66779b;
+  --paper: #f5f7fa; --surface: #ffffff; --line: #e3e9f2; --line-2: #cfd9ea;
+  --brand: var(--pp-blue); --brand-soft: #e5f1ff; --navy: #001435; --hold: var(--pp-sky);
+  --radius: 18px;
+  --lift: 0 1px 2px rgba(0, 20, 60, .06), 0 10px 30px -12px rgba(0, 48, 135, .22);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --ink: #eaf1ff; --ink-2: #b7c6e6; --ink-3: #8899bf;
+    --paper: #050d1f; --surface: #0b1a38; --line: #162a52; --line-2: #243a69;
+    --brand: #4da3ff; --brand-soft: #0e2552; --navy: #030a18; --hold: #3cc0f5;
+    --lift: 0 1px 2px rgba(0, 0, 0, .4), 0 14px 34px -14px rgba(0, 112, 224, .35);
+  }
+}
+:root[data-theme='dark'] {
+  --ink: #eaf1ff; --ink-2: #b7c6e6; --ink-3: #8899bf;
+  --paper: #050d1f; --surface: #0b1a38; --line: #162a52; --line-2: #243a69;
+  --brand: #4da3ff; --brand-soft: #0e2552; --navy: #030a18; --hold: #3cc0f5;
+  --lift: 0 1px 2px rgba(0, 0, 0, .4), 0 14px 34px -14px rgba(0, 112, 224, .35);
+}
+
+/* ---------- 2. Canvas: soft glow instead of ruled lines ---------- */
+body {
+  background:
+    radial-gradient(900px 420px at 85% -80px, color-mix(in srgb, var(--pp-sky) 16%, transparent), transparent 70%),
+    radial-gradient(700px 380px at -10% 0, color-mix(in srgb, var(--pp-blue) 10%, transparent), transparent 70%),
+    var(--paper);
+}
+.gate {
+  background:
+    radial-gradient(800px 500px at 90% 0, color-mix(in srgb, var(--pp-sky) 22%, transparent), transparent 70%),
+    radial-gradient(700px 500px at 0 100%, color-mix(in srgb, var(--pp-gold) 16%, transparent), transparent 70%),
+    var(--paper);
+}
+
+/* ---------- 3. Side rail: deep blue gradient ---------- */
+.rail { background: linear-gradient(175deg, #001a52 0%, var(--pp-deep) 55%, #00205f 100%); box-shadow: 6px 0 40px -18px rgba(0, 48, 135, .6); }
+.brand .mark { background: linear-gradient(140deg, var(--pp-sky), var(--pp-blue)); box-shadow: 0 6px 16px -4px rgba(0, 156, 222, .7); }
+.nav a { border-radius: 999px; padding: 10px 14px; transition: background .2s, color .2s, transform .2s; }
+.nav a:hover { transform: translateX(3px); }
+.nav a[aria-current='page'] { background: #fff; color: var(--pp-deep); font-weight: 650; }
+
+/* ---------- 4. Cards: roomy, rounded, floating ---------- */
+.panel, .kpi, .req, .proof, .budget, .mandate-preview, .callout, .flow-step {
+  border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--lift);
+}
+.kpi { position: relative; overflow: hidden; }
+.kpi::after { /* blue-to-gold ledger stripe */
+  content: ''; position: absolute; inset: auto 0 0 0; height: 4px;
+  background: linear-gradient(90deg, var(--pp-deep), var(--pp-sky), var(--pp-gold));
+}
+.kpi-value, .budget .big { color: var(--pp-deep); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .kpi-value, :root:not([data-theme='light']) .budget .big { color: #fff; } }
+:root[data-theme='dark'] .kpi-value, :root[data-theme='dark'] .budget .big { color: #fff; }
+.chip { border-radius: 999px; font-weight: 600; }
+
+/* ---------- 5. Buttons: pill shape, golden primary ---------- */
+button, .btn, .primary, .ghost { border-radius: 999px; font-weight: 650; transition: transform .15s, box-shadow .2s, background .2s; }
+.primary, button.primary {
+  background: var(--pp-gold); color: #0c1b3a; border: 1px solid var(--pp-gold-2);
+  box-shadow: 0 6px 18px -6px rgba(242, 186, 54, .8);
+}
+.primary:hover:not(:disabled) { background: #ffd05c; transform: translateY(-1px); box-shadow: 0 10px 22px -8px rgba(242, 186, 54, .9); }
+.ghost { border: 1.5px solid var(--pp-blue); color: var(--pp-blue); background: transparent; }
+.ghost:hover:not(:disabled) { background: var(--brand-soft); }
+.danger { border-radius: 999px; }
+:focus-visible { outline: 3px solid var(--pp-gold); outline-offset: 2px; }
+
+/* Gentle shine on the main call-to-action (skipped for reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+  .primary { background-image: linear-gradient(100deg, transparent 35%, rgba(255, 255, 255, .55) 50%, transparent 65%); background-size: 250% 100%; background-position: 150% 0; }
+  .primary:hover:not(:disabled) { background-position: -50% 0; transition: background-position .8s; }
+}
+
+/* ---------- 6. Hero and forms ---------- */
+.hero { background: linear-gradient(135deg, var(--pp-deep), var(--pp-blue) 70%, var(--pp-sky)); color: #fff; border-radius: calc(var(--radius) + 6px); box-shadow: var(--lift); }
+.hero .muted, .hero p { color: rgba(255, 255, 255, .85); }
+input, select, textarea { border-radius: 12px; border: 1.5px solid var(--line-2); background: var(--surface); color: var(--ink); }
+input:focus, select:focus, textarea:focus { border-color: var(--pp-blue); box-shadow: 0 0 0 4px color-mix(in srgb, var(--pp-blue) 22%, transparent); outline: none; }
+
+/* ---------- 7. Chain view: linked blocks + autopsy cascade ---------- */
+.blk { border-radius: 14px; border-left: 6px solid var(--pp-blue); box-shadow: var(--lift); }
+.blk.good { border-left-color: var(--ok); }
+.blk-hash { font-family: var(--mono); color: var(--pp-blue); }
+/* AUTOPSY: once one block breaks, every later block visibly fails too */
+.blk.broken { border-left-color: var(--bad); background: var(--bad-soft); }
+.blk.broken ~ .blk { border-left-color: var(--bad); background: repeating-linear-gradient(135deg, var(--bad-soft) 0 12px, transparent 12px 24px); filter: saturate(.7); }
+.blk.broken ~ .blk .blk-hash { color: var(--bad); text-decoration: line-through; }
+
+/* ---------- 8. Verdict stamp and Proof Card ---------- */
+.verdict { border-radius: 999px; font-weight: 700; letter-spacing: .02em; }
+.proof { border-top: 6px solid var(--pp-gold); }
+.toast { border-radius: 14px; box-shadow: var(--lift); }
+
+/* ---------- 9. Mobile ---------- */
+@media (max-width: 760px) {
+  :root { --radius: 14px; }
+  .primary, .ghost { width: 100%; justify-content: center; }
+  .nav a { padding: 12px 14px; }
+}
+
+/* ---------- 10. Nested cards: no second shadow inside a panel ---------- */
+.panel .budget, .panel .req, .panel .kpi, .panel .blk { box-shadow: none; }
+.panel .budget, .panel .req { border-radius: 14px; }
+
+/* Hero flow steps: centre the number badge against its text and give the pill breathing room */
+.flow-step { align-items: center; padding: 10px 22px 10px 14px; }
+.flow-n { margin-top: 0; width: 28px; height: 28px; line-height: 1; }
+.flow-step > div { gap: 2px; line-height: 1.3; }
+
+/* Impact strip under the demo hero */
+.impact { margin: 0 0 18px; padding: 18px 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--lift); }
+.impact h3 { font-size: 15px; margin: 0 0 12px; }
+.impact-stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.impact-stat { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: calc(var(--radius) - 2px); background: var(--brand-soft, rgba(0, 112, 224, .08)); }
+.impact-stat strong { font-size: clamp(22px, 2.6vw, 30px); line-height: 1.1; color: var(--brand); letter-spacing: -.01em; }
+.impact-stat span { font-size: 12.5px; line-height: 1.35; color: var(--ink-2); }
+.impact-src { margin: 12px 0 0; }
+@media (max-width: 860px) { .impact-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .impact { padding: 14px; } }
+@media (max-width: 420px) { .impact-stats { grid-template-columns: 1fr; } }
