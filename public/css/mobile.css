@@ -1,0 +1,67 @@
+/* mobile.css - phone and tablet fixes for LedgerTrue. Must load LAST. */
+
+/* ---- Always on ---- */
+html { -webkit-text-size-adjust: 100%; }
+img, svg, canvas, video { max-width: 100%; height: auto; }
+.main, .panel, .pad, .hero, .item, .req, .blk { min-width: 0; }
+
+/* Long hashes and IDs have no spaces, so they must be told to wrap */
+.blk-hash, code, .mono, .req-reason, .blk-sum, .item .sub { overflow-wrap: anywhere; }
+pre { max-width: 100%; overflow-x: auto; }
+
+/* ---- Phones and small tablets ---- */
+@media (max-width: 760px) {
+  .rail { flex-direction: column; flex-wrap: nowrap; align-items: stretch; }
+  .rail-foot { margin: 0; }
+
+  .ghost { width: auto; justify-content: flex-start; }
+  .primary { width: auto; }
+  .hero-copy .primary, .form-grid .primary, .mandate-form-layout .primary,
+  .empty .primary, form .primary { width: 100%; justify-content: center; }
+
+  .nav a { padding: 7px 10px; }
+
+  input, select, textarea { font-size: 16px; }
+  button, .btn, select, input[type="checkbox"], input[type="radio"] { min-height: 40px; }
+
+  table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  .main { padding-left: 14px; padding-right: 14px; }
+  .pad { padding: 14px; }
+  .list > .item { grid-template-columns: minmax(0, 1fr); }
+  .page-head { flex-direction: column; align-items: stretch; }
+
+  .assistant-launcher { bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+  .assistant-panel { max-height: calc(100dvh - 86px - env(safe-area-inset-bottom, 0px)); }
+}
+
+/* ---- Small phones ---- */
+@media (max-width: 400px) {
+  .main { padding-left: 12px; padding-right: 12px; }
+  h1 { font-size: 22px; }
+  .kpi-grid, .impact-stats, .form-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Tablets, portrait (761-860px) ---- */
+@media (min-width: 761px) and (max-width: 860px) {
+  .rail { position: sticky; top: 0; z-index: 30; flex-wrap: nowrap; align-items: center; gap: 8px 16px; }
+  .nav { flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; }
+  .nav a { flex: 0 0 auto; white-space: nowrap; }
+  .rail-foot { flex: 0 0 auto; }
+}
+
+/* ---- Tablets, all (761-1050px) ---- */
+@media (min-width: 761px) and (max-width: 1050px) {
+  .main { padding-left: 24px; padding-right: 24px; }
+  .mandate-form-layout { grid-template-columns: 1fr; }
+  .mandate-preview { position: static; }
+  .assistant-panel { max-width: min(420px, calc(100vw - 32px)); }
+  table { display: block; max-width: 100%; overflow-x: auto; }
+}
+
+/* ---- Any touch screen ---- */
+@media (pointer: coarse) {
+  button, .btn, select { min-height: 44px; }
+  input, select, textarea { font-size: 16px; }
+  .nav a { min-height: 44px; }
+}
