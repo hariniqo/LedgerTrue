@@ -1,6 +1,7 @@
 # LedgerTrue: Proof of Intent
 
 **Don't just trust the payment. Verify the intent.**
+**OPERATOR TOKEN :pay-pal-ledgertrue**
 
 LedgerTrue lets a person or company give an AI agent a spending **mandate**: a budget, allowed merchants, an expiry and a goal, signed in the owner's own browser. Every request, rule check and PayPal result goes into a **hash-chained, signed ledger**. A **Proof Card** with a QR code lets anyone re-verify the whole story in their own browser, and editing any record visibly breaks it.
 
