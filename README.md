@@ -4,6 +4,8 @@
 
 **OPERATOR TOKEN :pay-pal-ledgertrue**
 
+**LIVE DEMO:https://ledgertrue.onrender.com/**
+
 LedgerTrue lets a person or company give an AI agent a spending **mandate**: a budget, allowed merchants, an expiry and a goal, signed in the owner's own browser. Every request, rule check and PayPal result goes into a **hash-chained, signed ledger**. A **Proof Card** with a QR code lets anyone re-verify the whole story in their own browser, and editing any record visibly breaks it.
 
 > **The claim:** even a fully hijacked AI agent cannot spend outside what the owner signed. Plain code decides every payment, and the AI is only advisory. This is tested in [`test/liveagent.test.js`](test/liveagent.test.js).
