@@ -2,6 +2,7 @@
 
 /* ---- Always on ---- */
 html { -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; }   /* no sideways scroll; clip keeps sticky .rail working */
 img, svg, canvas, video { max-width: 100%; height: auto; }
 .main, .panel, .pad, .hero, .item, .req, .blk { min-width: 0; }
 
